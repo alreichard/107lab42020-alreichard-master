@@ -1,0 +1,121 @@
+'''
+python3 -m doctest -v student_test_cases.txt
+>>> from spellchecker import SpellChecker
+>>> import BasicSentimentMining as BSM
+>>> import os
+>>> classes = ['Positive', 'Neutral', 'Negative']
+>>> input_folder_path = os.path.join(os.getcwd(), 'Input_files')
+>>> ACTUAL_LABELS = []
+>>> PREDICTED_LABELS = []
+>>> list_of_files = os.listdir(input_folder_path) # Getting list of files
+>>> file_name = list_of_files[0] # Taking the first file for testing
+>>> Document = BSM.TextMining(file_name)
+>>> Document.print_content()
+Text:
+"I'm usually not good with spicy foods, but roger's microwave tacos add just the right spice as to not burn my mouth. I would say that they are the best frozen meal I have had in a long time, and I now keep my fridge full. As a college student, I do not have much space, so I love that you can buy each one seperately to save space."
+
+# Some students might have converted all letters to lowercases before or during preprocessing-- so their output will be in lowercase only
+# Should pass the following test which includes only lowercase letters as well
+>>> print('The cleaned up content:', Document.preprocess())
+The cleaned up content: im usually not good with spicy foods but rogers microwave tacos add just the right spice as to not burn my mouth i would say that they are the best frozen meal i have had in a long time and i now keep my fridge full as a college student i do not have much space so i love that you can buy each one separately to save space
+
+>>> print('The dictionary of letter freq:')
+The dictionary of letter freq:
+
+>>> BSM.print_dictionary(Document.get_letter_frequency())
+i :  14
+m :  8
+  :  68
+u :  12
+s :  17
+a :  24
+l :  11
+y :  9
+n :  12
+o :  23
+t :  23
+g :  6
+d :  10
+w :  4
+h :  13
+p :  6
+c :  10
+f :  4
+b :  4
+r :  9
+e :  27
+v :  5
+j :  1
+z :  1
+k :  1
+
+>>> print('The dictionary of word freq:') # They should have for sure converted everything to lowercase before counting freq of the words
+The dictionary of word freq:
+
+>>> BSM.print_dictionary(Document.get_word_frequency())
+im :  1
+usually :  1
+not :  3
+good :  1
+with :  1
+spicy :  1
+foods :  1
+but :  1
+rogers :  1
+microwave :  1
+tacos :  1
+add :  1
+just :  1
+the :  2
+right :  1
+spice :  1
+as :  2
+to :  2
+burn :  1
+my :  2
+mouth :  1
+i :  5
+would :  1
+say :  1
+that :  2
+they :  1
+are :  1
+best :  1
+frozen :  1
+meal :  1
+have :  2
+had :  1
+in :  1
+a :  2
+long :  1
+time :  1
+and :  1
+now :  1
+keep :  1
+fridge :  1
+full :  1
+college :  1
+student :  1
+do :  1
+much :  1
+space :  2
+so :  1
+love :  1
+you :  1
+can :  1
+buy :  1
+each :  1
+one :  1
+separately :  1
+save :  1
+
+>>> print('The set of unique words:', sorted(Document.get_set_of_unique_words()))
+The set of unique words: {'tacos', 'my', 'space', 'would', 'each', 'add', 'spice', 'separately', 'a', 'spicy', 'have', 'rogers', 'but', 'student', 'they', 'one', 'and', 'do', 'not', 'had', 'just', 'are', 'microwave', 'usually', 'good', 'love', 'in', 'that', 'fridge', 'as', 'now', 'save', 'i', 'mouth', 'frozen', 'meal', 'can', 'time', 'the', 'college', 'you', 'with', 'keep', 'foods', 'long', 'right', 'im', 'best', 'to', 'say', 'burn', 'much', 'buy', 'so', 'full'}
+
+
+>>> print('The set of useful words:', Document.get_useful_words())
+The set of useful words: ['im', 'usually', 'Ngood', 'spicy', 'foods', 'rogers', 'microwave', 'tacos', 'add', 'right', 'spice', 'Nburn', 'mouth', 'would', 'say', 'best', 'frozen', 'meal', 'long', 'time', 'keep', 'fridge', 'full', 'college', 'student', 'Nmuch', 'space', 'love', 'buy', 'one', 'separately', 'save', 'space']
+
+>>> print('The list of keywords:', Document.get_keywords())
+The list of keywords: ['space', 'im', 'usually', 'good', 'spicy', 'foods', 'rogers', 'microwave', 'tacos', 'add', 'right', 'spice', 'burn', 'mouth', 'would', 'say', 'best', 'frozen', 'meal', 'long', 'time', 'keep', 'fridge', 'full', 'college', 'student', 'much', 'love', 'buy', 'one', 'separately', 'save']
+'''

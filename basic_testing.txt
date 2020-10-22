@@ -1,0 +1,192 @@
+'''
+>>> import BasicSentimentMining as BSM
+>>> import os
+>>> classes = ['Positive', 'Neutral', 'Negative']
+>>> input_folder_path = os.path.join(os.getcwd(), 'Input_files')
+>>> ACTUAL_LABELS = []
+>>> PREDICTED_LABELS = []
+>>> list_of_files = os.listdir(input_folder_path) # Getting list of files
+>>> file_name = list_of_files[0] # Taking the first file for testing
+>>> Document = BSM.TextMining(file_name)
+>>> Document.print_content()
+The original content of the file 0_Positive.txt is printed below:
+""I initially had trouble deciding between the paperwhite and the voyage because reviews more or less said the same thing: the paperwhite is great, but if you have spending money, go for the voyage.Fortunately, I had friends who owned each, so I ended up buying the paperwhite on this basis: both models now have 300 ppi, so the 80 dollar jump turns out pricey the voyage's page press isn't always sensitive, and if you are fine with a specific setting, you don't need auto light adjustment).It's been a week and I am loving my paperwhite, no regrets! The touch screen is receptive and easy to use, and I keep the light at a specific setting regardless of the time of day. (In any case, it's not hard to change the setting either, as you'll only be changing the light level at a certain time of day, not every now and then while reading).Also glad that I went for the international shipping option with Amazon. Extra expense, but delivery was on time, with tracking, and I didnt need to worry about customs, which I may have if I used a third party shipping service.","Paperwhite voyage, no regrets!"
+"
+
+# Some students might have converted all letters to lowercases before or during preprocessing-- so their output will be in lowercase only
+# Should pass the following test which includes only lowercase letters as well
+>>> print('The cleaned up content:', Document.preprocess())
+The cleaned up content: i initially had trouble deciding between the paperwhite and the voyage because reviews more or less said the same thing the paperwhite is great but if you have spending money go for the voyage fortunately i had friends who owned each so i ended up buying the paperwhite on this basis both models now have  ppi so the  dollar jump turns out pricey the voyages page press isnt always sensitive and if you are fine with a specific setting you dont need auto light adjustment its been a week and i am loving my paperwhite no regrets the touch screen is receptive and easy to use and i keep the light at a specific setting regardless of the time of day  in any case its not hard to change the setting either as youll only be changing the light level at a certain time of day not every now and then while reading also glad that i went for the international shipping option with amazon  extra expense but delivery was on time with tracking and i didnt need to worry about customs which i may have if i used a third party shipping service paperwhite voyage no regrets
+>>> print('The dictionary of letter freq:')
+The dictionary of letter freq:
+
+>>> BSM.print_dictionary(Document.get_letter_frequency())
+i :  77
+  :  201
+n :  61
+t :  82
+a :  69
+l :  24
+y :  25
+h :  48
+d :  34
+r :  41
+o :  51
+u :  21
+b :  11
+e :  116
+c :  19
+g :  29
+w :  21
+p :  29
+v :  15
+s :  50
+m :  14
+f :  13
+j :  2
+k :  3
+z :  1
+x :  2
+
+>>> print('The dictionary of word freq:') # They should have for sure converted everything to lowercase before counting freq of the words
+The dictionary of word freq:
+
+>>> BSM.print_dictionary(Document.get_word_frequency())
+i :  9
+initially :  1
+had :  2
+trouble :  1
+deciding :  1
+between :  1
+the :  14
+paperwhite :  5
+and :  7
+voyage :  3
+because :  1
+reviews :  1
+more :  1
+or :  1
+less :  1
+said :  1
+same :  1
+thing :  1
+is :  2
+great :  1
+but :  2
+if :  3
+you :  3
+have :  3
+spending :  1
+money :  1
+go :  1
+for :  2
+fortunately :  1
+friends :  1
+who :  1
+owned :  1
+each :  1
+so :  2
+ended :  1
+up :  1
+buying :  1
+on :  2
+this :  1
+basis :  1
+both :  1
+models :  1
+now :  2
+ppi :  1
+dollar :  1
+jump :  1
+turns :  1
+out :  1
+pricey :  1
+voyages :  1
+page :  1
+press :  1
+isnt :  1
+always :  1
+sensitive :  1
+are :  1
+fine :  1
+with :  3
+a :  5
+specific :  2
+setting :  3
+dont :  1
+need :  2
+auto :  1
+light :  3
+adjustment :  1
+its :  2
+been :  1
+week :  1
+am :  1
+loving :  1
+my :  1
+no :  2
+regrets :  2
+touch :  1
+screen :  1
+receptive :  1
+easy :  1
+to :  3
+use :  1
+keep :  1
+at :  2
+regardless :  1
+of :  3
+time :  3
+day :  2
+in :  1
+any :  1
+case :  1
+not :  2
+hard :  1
+change :  1
+either :  1
+as :  1
+youll :  1
+only :  1
+be :  1
+changing :  1
+level :  1
+certain :  1
+every :  1
+then :  1
+while :  1
+reading :  1
+also :  1
+glad :  1
+that :  1
+went :  1
+international :  1
+shipping :  2
+option :  1
+amazon :  1
+extra :  1
+expense :  1
+delivery :  1
+was :  1
+tracking :  1
+didnt :  1
+worry :  1
+about :  1
+customs :  1
+which :  1
+may :  1
+used :  1
+third :  1
+party :  1
+service :  1
+
+>>> print('The set of unique words:', sorted(Document.get_set_of_unique_words()))
+The set of unique words: ['a', 'about', 'adjustment', 'also', 'always', 'am', 'amazon', 'and', 'any', 'are', 'as', 'at', 'auto', 'basis', 'be', 'because', 'been', 'between', 'both', 'but', 'buying', 'case', 'certain', 'change', 'changing', 'customs', 'day', 'deciding', 'delivery', 'didnt', 'dollar', 'dont', 'each', 'easy', 'either', 'ended', 'every', 'expense', 'extra', 'fine', 'for', 'fortunately', 'friends', 'glad', 'go', 'great', 'had', 'hard', 'have', 'i', 'if', 'in', 'initially', 'international', 'is', 'isnt', 'its', 'jump', 'keep', 'less', 'level', 'light', 'loving', 'may', 'models', 'money', 'more', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'option', 'or', 'out', 'owned', 'page', 'paperwhite', 'party', 'ppi', 'press', 'pricey', 'reading', 'receptive', 'regardless', 'regrets', 'reviews', 'said', 'same', 'screen', 'sensitive', 'service', 'setting', 'shipping', 'so', 'specific', 'spending', 'that', 'the', 'then', 'thing', 'third', 'this', 'time', 'to', 'touch', 'tracking', 'trouble', 'turns', 'up', 'use', 'used', 'voyage', 'voyages', 'was', 'week', 'went', 'which', 'while', 'who', 'with', 'worry', 'you', 'youll']
+
+>>> print('The set of useful words:', Document.get_useful_words())
+The set of useful words: ['initially', 'trouble', 'deciding', 'paperwhite', 'voyage', 'reviews', 'less', 'said', 'thing', 'paperwhite', 'great', 'spending', 'money', 'go', 'voyage', 'fortunately', 'friends', 'owned', 'ended', 'buying', 'paperwhite', 'basis', 'models', 'ppi', 'dollar', 'jump', 'turns', 'pricey', 'voyages', 'page', 'press', 'isnt', 'always', 'sensitive', 'fine', 'specific', 'setting', 'dont', 'need', 'auto', 'light', 'adjustment', 'week', 'loving', 'paperwhite', 'regrets', 'touch', 'screen', 'receptive', 'easy', 'keep', 'light', 'specific', 'setting', 'regardless', 'time', 'day', 'case', 'hard', 'change', 'setting', 'either', 'youll', 'changing', 'light', 'level', 'certain', 'time', 'day', 'every', 'reading', 'also', 'glad', 'went', 'international', 'shipping', 'option', 'amazon', 'extra', 'expense', 'delivery', 'time', 'tracking', 'didnt', 'need', 'worry', 'customs', 'may', 'used', 'third', 'party', 'shipping', 'service', 'paperwhite', 'voyage', 'regrets']
+
+>>> print('The list of keywords:', Document.get_keywords())
+The list of keywords: [('paperwhite', 5), ('voyage', 3), ('setting', 3), ('light', 3), ('time', 3), ('specific', 2), ('need', 2), ('regrets', 2), ('day', 2), ('shipping', 2)]
+
+'''

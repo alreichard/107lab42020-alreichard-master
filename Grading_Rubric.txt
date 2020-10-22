@@ -1,0 +1,14 @@
+CS107 Lab 4 Grading Sheet
+Fall 2020
+link here: https://docs.google.com/document/d/1s53WWQVUxVq47viVPvW0oznOOhitmBNrtb6EG2ELWSE/edit?usp=sharing
+
+Instructions: There will be eight labs, each worth 5% of the total grade. The total points for each lab would be 25 which is 5 times the percentage share. A rubric is never complete. TAs should use their best judgment to grade. Keep fairness in mind. 
+
+Maximum points = 25 
+
+Lab4: Text mining
+
+There are 20 test cases in the basic_testing.txt. These test cases cover everything but the sentiment part. The sentiment part shall be graded based on the Confusion Matrix plot. Most of the output should match. In case it does not because of lower, upper case, or no proper cleaning of the content (e.g., nor replacing . with “ ” might have got two words to stick together), please review the failed cases carefully. As long as they closely match, award full points. [10 points]
+Sentiment analysis. The expectation was that the submission should be doing better than random. That means, for every class of sentiments, 33% of the instances must have been classified correctly. The student should have explained 33%. In case they haven't, for each row, just look at a diagonal element and see if it is 33% of the sum of the numbers in that row. A quick way would be to calculate the 33% in advance for each class and then just see the numbers in the diagonal box, it should be greater than or equal to the corresponding 33% that you have computed. If not deduct points accordingly. [12 points]
+Clarity of the logic, nomenclature, and comments [3 points]
+
